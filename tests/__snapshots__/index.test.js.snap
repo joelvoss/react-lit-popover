@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Popover /> should render a popover 1`] = `
+<body>
+  <div>
+    <div>
+      <div />
+    </div>
+  </div>
+  <portal>
+    <div
+      style="position: absolute; left: 0px; top: 0px;"
+    >
+      <div>
+        I'm inside a popover!
+      </div>
+    </div>
+  </portal>
+</body>
+`;
+
+exports[`<Popover /> should render a popover with a different position 1`] = `
+<body>
+  <div>
+    <div>
+      <div />
+    </div>
+  </div>
+  <portal>
+    <div
+      style="position: absolute; width: 0px; left: 0px; top: 0px;"
+    >
+      <div>
+        I'm inside a popover!
+      </div>
+    </div>
+  </portal>
+</body>
+`;
