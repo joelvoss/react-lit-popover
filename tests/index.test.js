@@ -1,7 +1,5 @@
 import * as React from 'react';
 import { render } from './test-utils';
-import { axe } from 'jest-axe';
-
 import {
 	Popover,
 	positionDefault,
@@ -10,54 +8,30 @@ import {
 } from '../src/index';
 
 describe('<Popover />', () => {
-	it('should not have ARIA violations', async () => {
-		const Element = () => {
-			const ref = React.useRef(null);
-			return (
-				<div>
-					<div ref={ref} />
-					<Popover targetRef={ref}>
-						<div>I'm inside a popover!</div>
-					</Popover>
-				</div>
-			);
-		};
+	const Comp = ({ position }) => {
+		const ref = React.useRef(null);
+		return (
+			<div>
+				<div ref={ref} />
+				<Popover targetRef={ref} position={position}>
+					<div>I'm inside a popover!</div>
+				</Popover>
+			</div>
+		);
+	};
 
-		let { container } = render(<Element />);
-		expect(await axe(container)).toHaveNoViolations();
+	it('should not have ARIA violations', async () => {
+		let { container } = render(<Comp />);
+		await expect(container).toHaveNoAxeViolations();
 	});
 
 	it(`should render a popover`, async () => {
-		const Element = () => {
-			const ref = React.useRef(null);
-			return (
-				<div>
-					<div ref={ref} />
-					<Popover targetRef={ref}>
-						<div>I'm inside a popover!</div>
-					</Popover>
-				</div>
-			);
-		};
-
-		const { baseElement } = render(<Element />);
+		const { baseElement } = render(<Comp />);
 		expect(baseElement).toMatchSnapshot();
 	});
 
 	it(`should render a popover with a different position`, async () => {
-		const Element = () => {
-			const ref = React.useRef(null);
-			return (
-				<div>
-					<div ref={ref} />
-					<Popover targetRef={ref} position={positionMatchWidth}>
-						<div>I'm inside a popover!</div>
-					</Popover>
-				</div>
-			);
-		};
-
-		const { baseElement } = render(<Element />);
+		const { baseElement } = render(<Comp position={positionMatchWidth} />);
 		expect(baseElement).toMatchSnapshot();
 	});
 });
