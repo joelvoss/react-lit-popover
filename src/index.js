@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useRef } from 'react';
+import * as React from 'react';
 import { Portal } from '@react-lit/portal';
 import { useRect } from '@react-lit/rect';
 import { getOwnerDocument, useComposeRefs, tabbable } from '@react-lit/helper';
@@ -30,7 +30,7 @@ import { getOwnerDocument, useComposeRefs, tabbable } from '@react-lit/helper';
 /**
  * Popover
  */
-export const Popover = forwardRef((props, ref) => (
+export const Popover = React.forwardRef((props, ref) => (
 	<Portal>
 		<PopoverImpl ref={ref} {...props} />
 	</Portal>
@@ -42,7 +42,7 @@ export const Popover = forwardRef((props, ref) => (
  * PopoverImpl is conditionally rendered so we can't start measuring until it
  * shows up, so useRect needs to live down here not up in Popover.
  */
-const PopoverImpl = forwardRef(
+const PopoverImpl = React.forwardRef(
 	(
 		{
 			as: Comp = 'div',
@@ -53,7 +53,7 @@ const PopoverImpl = forwardRef(
 		},
 		forwardedRef,
 	) => {
-		const popoverRef = useRef(null);
+		const popoverRef = React.useRef(null);
 		const popoverRect = useRect(popoverRef, { observe: !props.hidden });
 		const targetRect = useRect(targetRef, { observe: !props.hidden });
 		const ref = useComposeRefs(popoverRef, forwardedRef);
@@ -227,7 +227,7 @@ function getCollisions(
 function useSimulateTabNavigationForReactTree(triggerRef, popoverRef) {
 	const ownerDocument = getOwnerDocument(triggerRef.current);
 
-	useEffect(() => {
+	React.useEffect(() => {
 		/**
 		 * handleKeyDown
 		 * @param {KeyboardEvent} event
