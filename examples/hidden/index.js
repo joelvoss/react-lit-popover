@@ -1,10 +1,10 @@
-import { useCallback, useRef, useState } from 'react';
+import * as React from 'react';
 import { Popover } from '../../src/index';
 
 export function Example() {
-	const ref = useRef(null);
-	const [open, setOpen] = useState(false);
-	const updateOpen = useCallback(
+	const ref = React.useRef(null);
+	const [open, setOpen] = React.useState(false);
+	const updateOpen = React.useCallback(
 		e => {
 			setOpen(e.target.checked);
 		},

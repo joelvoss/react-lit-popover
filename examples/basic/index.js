@@ -1,9 +1,9 @@
-import { useRef, useState } from 'react';
+import * as React from 'react';
 import { Popover, positionMatchWidth, positionDefault } from '../../src/index';
 
 export function Example() {
-	const ref = useRef();
-	const [value, setValue] = useState('');
+	const ref = React.useRef();
+	const [value, setValue] = React.useState('');
 
 	return (
 		<>

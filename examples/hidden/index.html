@@ -2,15 +2,17 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<title>Example: Hidden</title>
+		<title>Example: Basic</title>
 	</head>
 	<body>
 		<div id="root"></div>
 		<script type="module">
-			import ReactDOM from 'react-dom';
+			import * as React from 'react';
+			import { createRoot } from 'react-dom/client';
 			import { Example } from './index.js';
-			const root = document.getElementById('root');
-			ReactDOM.render(<Example />, root);
+			const container = document.getElementById('root');
+			const root = createRoot(container);
+			root.render(<Example />);
 		</script>
 	</body>
 </html>
