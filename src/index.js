@@ -28,13 +28,28 @@ import { getOwnerDocument, useComposeRefs, tabbable } from '@react-lit/helper';
 ////////////////////////////////////////////////////////////////////////////////
 
 /**
- * Popover
+ * @typedef {Object} PopoverProps
+ * @prop {string} [as]
+ * @prop {React.RefObject<PossibleNode>} targetRef
+ * @prop {Position} [position]
+ * @prop {boolean} [hidden]
+ * @prop {React.RefObject<PossibleNode>[]} [observableRefs]
  */
-export const Popover = React.forwardRef((props, ref) => (
-	<Portal>
-		<PopoverImpl ref={ref} {...props} />
-	</Portal>
-));
+
+/**
+ * Popover
+ * @param {React.PropsWithChildren<PopoverProps>} props
+ * @param {React.MutableRefObject} [ref]
+ */
+function _Popover(props, ref) {
+	return (
+		<Portal>
+			<PopoverImpl ref={ref} {...props} />
+		</Portal>
+	);
+}
+
+export const Popover = React.forwardRef(_Popover);
 
 ////////////////////////////////////////////////////////////////////////////////
 
