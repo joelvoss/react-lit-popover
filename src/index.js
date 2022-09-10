@@ -11,8 +11,8 @@ import { getOwnerDocument, useComposeRefs, tabbable } from '@react-lit/helper';
 
 /**
  * @typedef {(
- *   targetRect?: PRect | null,
- *   popoverRect?: PRect | null,
+ *   targetRect: PRect | null,
+ *   popoverRect: PRect | null,
  *   unstableObserverableNodes: Array<PossibleNode>
  * ) => React.CSSProperties} Position
  */
