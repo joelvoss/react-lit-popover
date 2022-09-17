@@ -199,6 +199,44 @@ export function positionMatchWidth(targetRect, popoverRect) {
 ////////////////////////////////////////////////////////////////////////////////
 
 /**
+ * positionCenter
+ * @param {PRect | null} targetRect
+ * @param {PRect | null} popoverRect
+ * @returns {{ left: string, top: string }}
+ */
+export function positionCenter(targetRect, popoverRect) {
+	if (!targetRect || !popoverRect) {
+		return {};
+	}
+
+	const { directionLeft, directionRight, directionUp } = getCollisions(
+		targetRect,
+		popoverRect,
+	);
+
+	let left =
+		targetRect.left +
+		targetRect.width / 2 -
+		popoverRect.width / 2 +
+		window.pageXOffset;
+
+	if (directionRight) {
+		left = targetRect.right - popoverRect.width + window.pageXOffset;
+	}
+
+	if (directionLeft) {
+		left = targetRect.left + window.pageXOffset;
+	}
+
+	return {
+		left: `${left}px`,
+		...getTopPosition(targetRect, popoverRect, directionUp),
+	};
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+/**
  * getCollisions
  * @param {PRect} targetRect
  * @param {PRect} popoverRect

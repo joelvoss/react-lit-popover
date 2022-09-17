@@ -1,5 +1,11 @@
 import * as React from 'react';
-import { Popover, positionMatchWidth, positionDefault } from '../../src/index';
+import {
+	Popover,
+	positionDefault,
+	positionMatchWidth,
+	positionRight,
+	positionCenter,
+} from '../../src/index';
 
 export function Example() {
 	const ref = React.useRef();
@@ -9,9 +15,12 @@ export function Example() {
 		<>
 			<h2>Example: Basic</h2>
 			<div>
-				<textarea placeholder="1. Resize me to move stuff around" />
 				<textarea
-					placeholder="2. Try typing 'match width'"
+					placeholder="1. Resize me to move stuff around"
+					style={{ width: 350 }}
+				/>
+				<textarea
+					placeholder="2. Try typing 'right', 'match width' or 'center'"
 					ref={ref}
 					onChange={event => setValue(event.target.value)}
 				/>
@@ -19,7 +28,13 @@ export function Example() {
 					<Popover
 						targetRef={ref}
 						position={
-							value === 'match width' ? positionMatchWidth : positionDefault
+							value === 'right'
+								? positionRight
+								: value === 'match width'
+								? positionMatchWidth
+								: value === 'center'
+								? positionCenter
+								: positionDefault
 						}
 					>
 						<div
