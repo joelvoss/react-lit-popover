@@ -34,6 +34,8 @@ import { getOwnerDocument, useComposeRefs, tabbable } from '@react-lit/helper';
  * @prop {Position} [position]
  * @prop {boolean} [hidden]
  * @prop {React.RefObject<PossibleNode>[]} [observableRefs]
+ * @prop {React.CSSProperties} [style]
+ * @prop {string} [className]
  */
 
 /**
